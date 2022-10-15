@@ -16,6 +16,9 @@ $(function () {
     // 从layui身上获取form对象是什么意思????
     // 因为form身上有方法(实在自定义规则的上面提示的: 通过 form.verify 来自定义校验规则)
     let form = layui.form
+    let layer = layui.layer
+
+
     form.verify({
         pwd: [
             /^[\S]{6,12}$/
@@ -38,7 +41,7 @@ $(function () {
     });
 
     //  ++++++++++++++++++++++++++++++++++++++++   
-
+    // 监听注册表单提交事件
     $('#form_reg').on('submit', function (e) {
         e.preventDefault()
         console.log($('#form_reg [name=username]').val());
@@ -55,11 +58,12 @@ $(function () {
                 // console.log(res);
                 console.log(res.data);
                 if (res.status !== 0) {
-                    return console.log(res.message);
+                    return layer.msg(res.message);
                 }
                 else {
-                    console.log('注册成功')
-
+                    layer.msg('注册成功')
+                    // 模拟人的点击行为
+                    $('#link_login').click()
                 }
             }
 
@@ -72,37 +76,42 @@ $(function () {
 
 
 
-    /* 
-    $('#form_log').on('submit',function(e){
+
+
+    // 监听登录表单提交事件
+    
+    $('#form_log').submit(function (e) {
         e.preventDefault()
-    
+        console.log($('#form_log [name=username]').val());
         $.ajax({
-            method:'POST',
-            url:'http://www.liulongbin.top:3007/api/login',
-            // 这里是需要获取一下html页面中用户输入的值的
-            data:{
-                username: $('#form_log [name=username]').val(),
-                password: $('#form_log [name=password]').val()
-            },
-            success:function(res){
-                if(res.status===1){
-                    console.log('登录成功')
+            method: 'POST',
+            // url:'http://big-event-vue-api-t.itheima.net/api/reg',
+            url: 'http://big-event-api-t.itheima.net/api/login',
+
+            // 快速获取表单数据,比手动拼接更方便
+            data: $(this).serialize(),
+
+            success: function (res) {
+                // console.log(res);
+                console.log(res.data);
+                if (res.status !== 0) {
+                    return layer.msg(res.message);
                 }
-                else  {
-                    return  console.log(res.message);    
-                }
-                
+                 layer.msg('登录成功')
+                 console.log(res.token);
+                //  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTI3NCwidXNlcm5hbWUiOiJlZW0iLCJwYXNzd29yZCI6IiIsIm5pY2tuYW1lIjoiIiwiZW1haWwiOiIiLCJ1c2VyX3BpYyI6IiIsImlhdCI6MTY2NTgxNzYxMCwiZXhwIjoxNjY1ODUzNjEwfQ.0dUTqzjy032mYrptprKRmbbQv2tIF7TFv9_3svkIESo
+                // 这个token值相当于一个身份正,可以在登录成功后保存到本地,以便在其他权限 接口中使用操作
+                localStorage.setItem('token',res.token)
+                // location.href='/index.html'
+
             }
-        
+
         })
-    
+
+
+
+
     })
-     */
-
-
-    // ++++++++++++++++++++++++++++++++++++
-    // 给注册按钮设置点击事件
-
 
 
 

@@ -1,12 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
 </head>
+
 <body>
-    
+    <!-- 版心 -->
+    <div class="layui-main">
+        <!-- logo框 -->
+        <img src="/assets/images/logo.png" alt="">
+    </div>
+
+    <!-- 登录框 -->
+    <div class="loginAndRegBox">
+        <!-- 登录框标题 -->
+        <div class="title-box"></div>
+
+        <!-- 登录页面div -->
+        <!-- 这里要优先设置a链接,又a链接进行控制代码转换 -->
+        <!-- a链接设置后要给非首页显示的页面进行设置隐藏 ,-->
+        <!-- 这时候为了操作dom元素,要开始JQ了 ,给a设置id-->
+        <div class="login-box">
+
+            <!-- 表单区域 -->
+            <form class="layui-form" action="" id="form_log">
+
+                <!-- 登录的用户名 -->
+                <div class="layui-form-item">
+                    <!-- 这个复制过来要删掉 -->
+                    <!-- <label class="layui-form-label"></label> -->
+                    <!-- <div class="layui-input-block"> -->
+                    <i class="layui-icon">&#xe66f;</i>
+                    <input type="text" name="username" required lay-verify="required" autocomplete="off"
+                        placeholder="请输入账号" class="layui-input">
+
+
+
+                </div>
+
+
+                <!-- 登录的密码 -->
+                <div class="layui-form-item">
+                    <!-- 同上 -->
+                    <!-- <label class="layui-form-label"></label> -->
+                    <!-- <div class="layui-input-inline"> -->
+                    <i class="layui-icon">&#xe7ae;</i>
+                    <input type="password" name="password" required lay-verify="required|pwd" autocomplete="off"
+                        placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+
+
+                <!-- 登录的按钮 -->
+                <div class="layui-form-item">
+                    <!-- <div class="layui-input-block"> -->
+                    <!-- <button type="button" class="layui-btn layui-btn-fluid">登录账号</button> -->
+                    <!-- 注意要使用表单里的提交按钮,然后再添样式类即可.因为这个按钮有 :'lay-submit 属性'-->
+                    <button class="layui-btn layui-btn-fluid layui-btn-normal " lay-submit>提交登录</button>
+                </div>
+
+
+                <!-- a链接按钮 -->
+                <div class="layui-form-item link">
+                    <a href="javascript:;" id="link_reg">去注册</a>
+                </div>
+
+
+            </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <!-- 注册页面div -->
+        <div class="reg-box">
+
+            <!-- 表单区域 -->
+            <form class="layui-form" action="" id="form_reg">
+
+                <!-- 登录的用户名 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon">&#xe66f;</i>
+                    <input type="text" name="username" required lay-verify="required" autocomplete="off"
+                        placeholder="请输入账号" class="layui-input">
+                </div>
+
+
+
+                <!-- 登录的密码 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon">&#xe7ae;</i>
+                    <input type="password" name="password" required lay-verify="required|pwd" autocomplete="off"
+                        placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+
+
+
+                <!-- 确认的密码 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon">&#xe7ae;</i>
+                    <input type="password" name="repassword" required lay-verify="required|pwd|repwd" autocomplete="off"
+                        placeholder="请再次确认密码" autocomplete="off" class="layui-input">
+                </div>
+
+
+                <!-- 注册的按钮 -->
+                <div class="layui-form-item regNewAccount">
+                    <button class="layui-btn layui-btn-fluid layui-btn-normal " lay-submit>提交注册</button>
+                </div>
+
+
+                <!-- a链接按钮 -->
+                <div class="layui-form-item link">
+                    <a href="javascript:;" id="link_login">去登陆</a>
+                </div>
+
+
+            </form>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
 </body>
+<script src="/assets/lib/layui/layui.all.js"></script>
+<script src="/assets/lib/jquery.js"></script>
+<script src="/js/login.js"></script>
+
 </html>
